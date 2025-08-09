@@ -1,0 +1,148 @@
+Let's create a structured, multi-file **NovaStream** Netflix‑style site that uses a small JSON database for dynamic content.
+
+**Project structure:**
+```
+novastream/
+│
+├── index.html       # Main page
+├── styles.css       # Stylesheet
+├── app.js           # Front-end logic
+├── movies.json      # Small database
+└── README.md        # Instructions
+```
+
+**1. index.html**
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NovaStream</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>NovaStream</h1>
+    <input type="text" id="search" placeholder="Search movies...">
+  </header>
+  <main id="movie-grid"></main>
+  <script src="app.js"></script>
+</body>
+</html>
+```
+
+**2. styles.css**
+```css
+body {
+  font-family: Arial, sans-serif;
+  background-color: #141414;
+  color: white;
+  margin: 0;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #000;
+}
+#movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+.movie {
+  background: #222;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+}
+.movie img {
+  width: 100%;
+  display: block;
+}
+```
+
+**3. movies.json**
+```json
+[
+  {
+    "title": "Interstellar",
+    "image": "https://via.placeholder.com/300x450?text=Interstellar",
+    "link": "https://www.youtube.com/watch?v=zSWdZVtXT7E"
+  },
+  {
+    "title": "Inception",
+    "image": "https://via.placeholder.com/300x450?text=Inception",
+    "link": "https://www.youtube.com/watch?v=8hP9D6kZseM"
+  },
+  {
+    "title": "The Matrix",
+    "image": "https://via.placeholder.com/300x450?text=The+Matrix",
+    "link": "https://www.youtube.com/watch?v=vKQi3bBA1y8"
+  }
+]
+```
+
+**4. app.js**
+```javascript
+async function loadMovies() {
+  const res = await fetch('movies.json');
+  const movies = await res.json();
+  const grid = document.getElementById('movie-grid');
+  grid.innerHTML = '';
+  movies.forEach(movie => {
+    const div = document.createElement('div');
+    div.className = 'movie';
+    div.innerHTML = `
+      <img src="${movie.image}" alt="${movie.title}">
+      <h3>${movie.title}</h3>
+      <a href="${movie.link}" target="_blank">Watch Trailer</a>
+    `;
+    grid.appendChild(div);
+  });
+}
+
+document.getElementById('search').addEventListener('input', async (e) => {
+  const term = e.target.value.toLowerCase();
+  const res = await fetch('movies.json');
+  const movies = await res.json();
+  const filtered = movies.filter(m => m.title.toLowerCase().includes(term));
+  const grid = document.getElementById('movie-grid');
+  grid.innerHTML = '';
+  filtered.forEach(movie => {
+    const div = document.createElement('div');
+    div.className = 'movie';
+    div.innerHTML = `
+      <img src="${movie.image}" alt="${movie.title}">
+      <h3>${movie.title}</h3>
+      <a href="${movie.link}" target="_blank">Watch Trailer</a>
+    `;
+    grid.appendChild(div);
+  });
+});
+
+loadMovies();
+```
+
+**5. README.md**
+```markdown
+# NovaStream
+A Netflix‑style movie browsing demo hosted on GitHub Pages.
+
+## Setup
+1. Clone this repo.
+2. Push to a new GitHub repository.
+3. Go to **Settings → Pages** and set the branch to `main` with `/` root.
+4. Visit your GitHub Pages URL.
+
+## Files
+- `index.html` — Main HTML.
+- `styles.css` — Styling.
+- `app.js` — JavaScript logic.
+- `movies.json` — Movie database.
+```
+
+Do you want me to zip these files so you can **download and directly upload to GitHub**?

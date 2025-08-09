@@ -1,0 +1,17 @@
+
+**5. README.md**
+```markdown
+# NovaStream
+A Netflix‑style movie browsing demo hosted on GitHub Pages.
+
+## Setup
+1. Clone this repo.
+2. Push to a new GitHub repository.
+3. Go to **Settings → Pages** and set the branch to `main` with `/` root.
+4. Visit your GitHub Pages URL.
+
+## Files
+- `index.html` — Main HTML.
+- `styles.css` — Styling.
+- `app.js` — JavaScript logic.
+- `movies.json` — Movie database.

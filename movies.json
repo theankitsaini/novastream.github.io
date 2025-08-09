@@ -1,0 +1,21 @@
+
+**3. movies.json**
+```json
+[
+  {
+    "title": "Interstellar",
+    "image": "https://via.placeholder.com/300x450?text=Interstellar",
+    "link": "https://www.youtube.com/watch?v=zSWdZVtXT7E"
+  },
+  {
+    "title": "Inception",
+    "image": "https://via.placeholder.com/300x450?text=Inception",
+    "link": "https://www.youtube.com/watch?v=8hP9D6kZseM"
+  },
+  {
+    "title": "The Matrix",
+    "image": "https://via.placeholder.com/300x450?text=The+Matrix",
+    "link": "https://www.youtube.com/watch?v=vKQi3bBA1y8"
+  }
+]
+```
